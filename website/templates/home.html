@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="'width=device-width, initial-scale=1" />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+            crossorigin="anonymous"
+        />
+
+        <title>{% block title %}Typing Speed Test{% endblock %}</title>
+    </head>
+
+    <body>
+
+        <style>
+            body {
+                display: flex;
+                flex-direction: column;
+                height: 100vh;
+                margin: 0;
+                background-color: #f0f0f0;
+            
+            }
+            h1 {
+                text-align: center;
+                margin: 0;
+                padding: 20px;
+            }
+            .container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 20px;
+                
+                margin-top: 20px;
+            }
+            .box {
+                width: 100px;
+                height: 100px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                border: 2px solid #000;
+                background-color: #fff;
+                font-size: 24px;
+                font-weight: bold;
+                border-radius: 25px;
+                padding: 10px;
+                text-align: center;
+            }
+            .number {
+                font-size: 24px;
+                margin: 5px 0;
+            }
+            .word {
+                font-size: 10px;
+                margin: 5px 0;
+            }
+        </style>
+
+        <style>
+            
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 100px;
+            margin: 10px;
+            font-size: 40px;
+            border-radius: 25px;
+
+        }
+
+        ::-webkit-input-placeholder {
+            color: grey;
+        }
+
+        :-moz-placeholder {
+            color: grey;
+            opacity: 1;
+        }
+
+        :-ms-input-placdholder {
+            color: grey;
+        }
+
+        .change-placeholder-color::placeholder {
+            color: red;
+        }
+
+        .input-container {
+            position: relative;
+            width: 90%;
+            margin: 60px;
+            white-space: nowrap;
+            /* overflow: hidden; */
+            
+        }
+        .input-field {
+           
+            width: 100%;
+            color: transparent;
+            font-size: 16px;
+            z-index: 2;
+            position: relative;
+            background: transparent;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            
+        }
+        .pseudo-placeholder{
+            position: absolute;
+            top: 39.5%;
+            left: 8.65%;
+            transform: translateY(-50%, -50%);
+            font-size: 40px;
+            color: grey;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            z-index: 1;
+        }
+       
+        </style>
+
+        
+        <h1 align="center">Typing Speed Test</h1>
+
+        <div class="container">
+            <div class="box">
+                <div class="number">123</div>
+                <div class="word">Words/Min</div>
+            </div>
+            <div class="box">
+                <div class="number">456</div>
+                <div class="word">Top Speed</div>
+            </div>
+            <div class="box">
+                <div class="number">789</div>
+                <div class="word">% Accuracy</div>
+            </div>
+        </div>
+
+        <br/>
+        <div class="input-container">
+            
+            <span class="pseudo-placeholder" id="textSpot"></span>
+            <input type="text" id="username" class="input-field">
+        </div>
+
+        <script
+      type="text/javascript"
+      src="{{ url_for('static', filename='placeHolderChange.js')}}"
+    ></script>
+
+
+
+    </body>
+</html>
