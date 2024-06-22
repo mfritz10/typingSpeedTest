@@ -8,6 +8,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Function to update placeholder color based on input
     function updatePlaceholderColor() {
 
+
+
         pseudoPlaceholder.innerHTML = '';
 
         const inputValue = inputField.value;
@@ -82,6 +84,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         }
         return true;
+    }
+
+    function setupPlaceholders(){
+        
     }
 
     // Initial check
