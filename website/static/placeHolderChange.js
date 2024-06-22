@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
     const inputField = document.getElementById('username');
     const pseudoPlaceholder = document.getElementById('textSpot');
+    const wordCounter = document.getElementById('WPM');
+
+    let beforeSpace = 0;
 
     // Function to update placeholder color based on input
     function updatePlaceholderColor() {
@@ -12,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
         let placeholderHTML = 'all work no play makes johnny a dull boy all work no play makes johnny a dull boy all work no play makes johnny a dull boy'
 
         let correctLength = 0
+        let wordCount = 0
         
 
         for (let i = 0; i < inputValue.length; i++) {
@@ -23,6 +27,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     correctLength++;
                 }  
                 correctLength++;
+
+                if (checkCorrectWord(pseudoPlaceholder)) {
+                    wordCount++;
+                    
+                    wordCounter.innerText = wordCount;
+                }
+
+
+
             } else if (inputValue[i] != placeholderHTML[correctLength]) {
                 listItem.style.color = 'red';
             } else {
@@ -53,6 +66,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
+    }
+
+    function checkCorrectWord(span) {
+
+        let children = span.children;
+        for (let i = children.length-1; i >= 0; i--) {
+            if (children[i].innerHTML == " ") {
+                return true;
+            }
+
+            if (children[i].style.color == "red") {
+                return false;
+            }
+
+        }
+        return true;
     }
 
     // Initial check
