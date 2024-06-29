@@ -127,6 +127,8 @@
             pointer-events: none;
             transition: all 0.3s ease;
             z-index: 1;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: 200;
         }
 
         #countdown {
@@ -158,11 +160,11 @@
                 <div class="word">Words/Min</div>
             </div>
             <div class="box">
-                <div class="number" id="topSpeed">456</div>
+                <div class="number" id="topSpeed">0</div>
                 <div class="word">Top Speed</div>
             </div>
             <div class="box">
-                <div class="number" id="accuracy">789</div>
+                <div class="number" id="accuracy">0</div>
                 <div class="word">% Accuracy</div>
             </div>
             <div class="box">
@@ -173,15 +175,15 @@
 
         <div class="container">
             <div class="clockbox">
-                <div id="countdown">60</div>
+                <div id="countdown">60.0</div>
             </div>
         </div>
 
         <div class="input-container">
             
             <span class="pseudo-placeholder" id="textSpot"></span>
-            <span class="pseudo-placeholder" id="text2">dlsfkjafk</span>
-            <input type="text" id="username" class="input-field">
+            <!-- <span class="pseudo-placeholder" id="text2">dlsfkjafk</span> -->
+            <input type="text" spellcheck="false" id="username" class="input-field">
         </div>
 
         <script
