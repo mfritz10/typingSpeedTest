@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (countdownInterval) {
             clearInterval(countdownInterval);
         }
-        countdownInterval = setInterval(updateCountdown, 10);
+        countdownInterval = setInterval(updateCountdown, 100);
     }
 
     inputField.addEventListener('input', function() {

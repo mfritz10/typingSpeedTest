@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const record = document.getElementById('record');
     const topSpeed = document.getElementById('topSpeed');
     
+    
+    const typewriterSound = new Audio('/static/typewriter.mp3');
+    
 
     let timeStamps = [60]
     let beforeSpace = 0;
@@ -26,11 +29,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         let correctLength = 0;
         let wordCount = 0;
+        wordCounter.innerText = wordCount;
         let countSpace = 0;
         
         
 
-        for (let i = 0; i < inputValue.length; i++) {
+        for (let i = 0; i < inputValue.length+1; i++) {
             const listItem = document.createElement('span');
 
             if (inputValue[i] == " ") {
@@ -44,17 +48,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     wordCount++;
                     
                     wordCounter.innerText = wordCount;
+
+
+                    if (i == inputValue.length-1) {
+                        timeStamps.push(clockElement.textContent);
+                        topSpeed.textContent = calculateMaxWPM(timeStamps);
+                    }
                 }
                 countSpace++;
 
-                if (i == inputValue.length-1) {
-                    timeStamps.push(clockElement.textContent);
-                    topSpeed.textContent = calculateMaxWPM(timeStamps);
-                }
-
                 
-
-
             } else if (inputValue[i] != placeholderHTML[correctLength]) {
                 listItem.style.color = 'red';
             } else {
@@ -64,6 +67,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             listItem.textContent = inputValue[i];
             pseudoPlaceholder.appendChild(listItem)
+            
 
             if (pseudoPlaceholder.offsetWidth > 200) {
                 pseudoPlaceholder.removeChild(pseudoPlaceholder.firstChild);
@@ -75,12 +79,27 @@ document.addEventListener('DOMContentLoaded', function() {
 
         }
 
+        const cursorSpan = document.createElement('span');
+        cursorSpan.className = 'curs';
+        pseudoPlaceholder.appendChild(cursorSpan);
+        // let toggle = setInterval(toggleTypewriter, 500);
+        let countdownInterval = setInterval(() => {
+            // cursorSpan.classList.toggle('curs');
+
+            if (cursorSpan.className == 'curs') {
+                cursorSpan.className = 'cursClear';
+            } else {
+                cursorSpan.className = 'curs';
+            }
+
+        }, 500);
+
         for (let i = correctLength; i < placeholderHTML.length; i++) {
             const rest = document.createElement('span');
-            rest.style.color = 'grey';
+            rest.style.color = 'white';
             rest.textContent = placeholderHTML[i];
             pseudoPlaceholder.appendChild(rest);
-
+            
 
             if (pseudoPlaceholder.offsetWidth > 1100) {
                 pseudoPlaceholder.removeChild(pseudoPlaceholder.lastChild);
@@ -161,19 +180,27 @@ document.addEventListener('DOMContentLoaded', function() {
     
     }
 
+
+    function playTypewriterSound() {
+        const sound = typewriterSound.cloneNode();
+        sound.currentTime = 0.45;
+        sound.play();
+    }
+
     let placeholderHTML;
     async function initialize() {
         placeholderHTML = await setTestVariable();
         updatePlaceholderColor();
         inputField.addEventListener('input', function() {
             updatePlaceholderColor();
+            playTypewriterSound();
             const clockElement = document.getElementById("countdown");
-            record.textContent = clockElement.textContent;
 
             if (clockElement.textContent == 0) {
                 inputField.removeEventListener('input', arguments.callee);
             }
         });
+
     }
 
     initialize()

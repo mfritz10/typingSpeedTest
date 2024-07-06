@@ -9,150 +9,61 @@
             integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
             crossorigin="anonymous"
         />
-        <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-            crossorigin="anonymous"
-        />
 
-        <title>{% block title %}Typing Speed Test{% endblock %}</title>
+        <title>
+            {% block title %}
+            Typing Speed Test
+            {% endblock %}
+        </title>
     </head>
 
     <body>
 
-        <style>
-            body {
-                display: flex;
-                flex-direction: column;
-                height: 100vh;
-                margin: 0;
-                background-color: #f0f0f0;
-            
-            }
-            h1 {
-                text-align: center;
-                margin: 0;
-                padding: 20px;
-            }
-            .container {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                gap: 20px;
-                
-                margin-top: 20px;
-            }
-            .box {
-                width: 100px;
-                height: 100px;
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                border: 2px solid #000;
-                background-color: #fff;
-                font-size: 24px;
-                font-weight: bold;
-                border-radius: 25px;
-                padding: 10px;
-                text-align: center;
-            }
-            .number {
-                font-size: 24px;
-                margin: 5px 0;
-            }
-            .word {
-                font-size: 10px;
-                margin: 5px 0;
-            }
-        </style>
+        <link rel="stylesheet" type="text/css" href="static/styles.css">
 
-        <style>
-            
-        input[type="text"], textarea {
-            width: 100%;
-            padding: 100px;
-            margin: 10px;
-            font-size: 40px;
-            border-radius: 25px;
+        <div class="top-right">
+            <button id="login" class="login-button">Login</button>
+        </div>
 
-        }
+        <div class="second-top-right">
+            <button id="sign-up" class="login-button">Sign Up</button>
+        </div>
 
-        ::-webkit-input-placeholder {
-            color: grey;
-        }
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button" id="closeModalButton">&times;</span>
+                <h2>Login</h2>
+                <p>Username</p>
+                <input spellcheck="false" id="user" class="login" placeholder="username">
+                <p>Password</p>
+                <input spellcheck="false" id="password" class="login" placeholder="password">
+                <br>
+                <button id="logUser">Login</button>
+            </div>
+        </div>
 
-        :-moz-placeholder {
-            color: grey;
-            opacity: 1;
-        }
 
-        :-ms-input-placdholder {
-            color: grey;
-        }
-
-        .change-placeholder-color::placeholder {
-            color: red;
-        }
-
-        .input-container {
-            position: relative;
-            width: 90%;
-            margin-top: 30px;
-            margin-left: 60px;
-            white-space: nowrap;
-            /* overflow: hidden; */
-            
-        }
-        .input-field {
-           
-            width: 100%;
-            color: transparent;
-            font-size: 16px;
-            z-index: 2;
-            position: relative;
-            background: transparent;
-            border: 2px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-            
-        }
-        .pseudo-placeholder{
-            position: absolute;
-            top: 39.5%;
-            left: 8.65%;
-            transform: translateY(-50%, -50%);
-            font-size: 40px;
-            color: grey;
-            pointer-events: none;
-            transition: all 0.3s ease;
-            z-index: 1;
-            font-family: 'Courier New', Courier, monospace;
-            font-weight: 200;
-        }
-
-        #countdown {
-                font-size: 48px;
-                color: #333;
-                text-align: center;
-            }
-        .clockbox {
-                width: 140px;
-                height: 140px;
-                border: 2px solid #000;
-                background-color: #fff;
-                font-size: 24px;
-                border-radius: 70px;
-
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-       
-        </style>
+        <div id="sign-up-modal" class="modal">
+            <div class="modal-content">
+                <span class="close-button" id="closeSignUpButton">&times;</span>
+                <h2>Sign Up</h2>
+                <p>Email</p>
+                <input spellcheck="false" id="email" class="login" placeholder="email">
+                <p>Username</p>
+                <input spellchedk="false" id="usernameSet" class="login" placeholder="username">
+                <p>Password</p>
+                <input spellcheck="false" id="passwordSet" class="login" placeholder="password">
+                <p>Confirm Password</p>
+                <input spellcheck="false" id="confirmPasswordSet" class="login" placeholder="password">
+                <br>
+                <button id="signUser">Sign up</button>
+            </div>
+        </div>
 
         
+        
         <h1 align="center">Typing Speed Test</h1>
+
 
         <div class="container">
             <div class="box">
@@ -184,20 +95,25 @@
             <span class="pseudo-placeholder" id="textSpot"></span>
             <!-- <span class="pseudo-placeholder" id="text2">dlsfkjafk</span> -->
             <input type="text" spellcheck="false" id="username" class="input-field">
+            <!-- <audio id="typewriter-sound" src="typewriter.mp3" preload="auto"></audio> -->
         </div>
 
-        <script
-      type="text/javascript"
-      src="{{ url_for('static', filename='placeHolderChange.js')}}"
-    ></script>
+        <script 
+        type="text/javascript" 
+        src="{{ url_for('static', filename='signUp.js')}}"
+        ></script>
+
+        <script src="static/login.js"></script>
 
         <script 
         type="text/javascript"
         src="{{ url_for('static', filename='clock.js')}}"
         ></script>
 
-
-
+        <script
+        type="text/javascript"
+        src="{{ url_for('static', filename='placeHolderChange.js')}}"
+        ></script>
 
     </body>
 </html>
